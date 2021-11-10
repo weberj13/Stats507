@@ -12,10 +12,10 @@ df2017 = pd.read_sas("datasets/DEMO_J.XPT")
 df2017['cohort'] = 2017
 # Create df with columns of interest
 df_demo = df2011.append(df2013).append(df2015).append(df2017)
-df_demo = df_demo[['SEQN', 'RIDAGEYR', 'RIDRETH3', 'DMDEDUC2', 'DMDMARTL',
+df_demo = df_demo[['SEQN', 'RIAGENDR', 'RIDAGEYR', 'RIDRETH3', 'DMDEDUC2', 'DMDMARTL',
        'RIDSTATR', 'SDMVPSU', 'SDMVSTRA', 'WTMEC2YR', 'WTINT2YR', 'cohort']]
 # Change column names
-df_demo.rename(columns={'SEQN' : "id", 'RIDAGEYR' : "age", 'RIDRETH3' : "race", 
+df_demo.rename(columns={'SEQN' : "id", 'RIAGENDR' : "gender", 'RIDAGEYR' : "age", 'RIDRETH3' : "race", 
                    'DMDEDUC2' : "education", 'DMDMARTL' : "marital status",
                    'RIDSTATR' : "interview status", 'SDMVPSU' : "pseudo-psu", 
                    'SDMVSTRA' : "pseudo-stratum", 'WTMEC2YR' : "interviewed and mec examined", 
@@ -25,7 +25,7 @@ df_demo = df_demo.fillna(-1)
 df_demo = df_demo.astype({'id' : 'int64', 'age' : 'int64', 'race' : 'int64', 
                 'marital status' : 'int64', 'education': 'int64', 'interview status' : 'int64', 
                 'pseudo-psu' : 'int64', 'pseudo-stratum' : 'int64'})
-df_demo = df_demo.astype({'race' : 'category', 'education' : 'category', 
+df_demo = df_demo.astype({'gender' : 'category', 'race' : 'category', 'education' : 'category', 
                           'marital status' : 'category', 'interview status' : 'category'})
 df_demo.to_pickle("./demographic.pkl")
 
